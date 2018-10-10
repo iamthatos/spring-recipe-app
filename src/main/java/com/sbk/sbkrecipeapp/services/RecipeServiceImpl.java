@@ -2,12 +2,14 @@ package com.sbk.sbkrecipeapp.services;
 
 import com.sbk.sbkrecipeapp.domain.Recipe;
 import com.sbk.sbkrecipeapp.repositories.RecipesRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
     
@@ -19,6 +21,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Set<Recipe> findAll() {
+        log.debug("Inside find all");
         Set<Recipe> recipes = new HashSet<>();
         recipesRepository.findAll().iterator().forEachRemaining(recipes :: add);       
         return recipes;
@@ -26,6 +29,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe findById(Long id) {
+        log.debug("Inside find One by id");
         Optional<Recipe> recipeOptional = recipesRepository.findById(id);
         return recipeOptional.get();
     }

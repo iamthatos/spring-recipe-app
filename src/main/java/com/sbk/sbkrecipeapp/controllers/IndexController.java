@@ -4,11 +4,13 @@ import com.sbk.sbkrecipeapp.domain.Category;
 import com.sbk.sbkrecipeapp.domain.UnitOfMeasure;
 import com.sbk.sbkrecipeapp.repositories.CategoryRepository;
 import com.sbk.sbkrecipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class IndexController {
     
@@ -22,7 +24,7 @@ public class IndexController {
 
     @RequestMapping({"", "/index", "/index.html"})
     private String getIndexPage() {
-        
+        log.debug("Getting index page");
         Optional<Category> categoryOptional = categoryRepository.findByDescription("American");
         Optional<UnitOfMeasure> unitOfMeasureOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
